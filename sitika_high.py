@@ -1,5 +1,6 @@
 import csv
 import matplotlib.pyplot as plt
+from datetime import datetime
 
 # Open csv file
 filename = 'data/sitka_weather_07-2018_simple.csv'
@@ -7,25 +8,29 @@ with open(filename) as f:
 	reader = csv.reader(f)
 	header_row = next(reader)
 	# Print header and their index
-	""" for index, column_header in enumerate(header_row):
+	for index, column_header in enumerate(header_row):
 			print(index, column_header) 
-	""" 
-
-# Get the high temperture from the file
-	high_temps = []
-	for temp in reader:
-		high_temp = int(temp[5])
+	
+	# Get the date
+	# Get the high temperture from the file
+	dates, high_temps = [], []
+	for row in reader:
+		current_date = datetime.strptime(row[2], '%Y-%m-%d')
+		high_temp = int(row[5])
+		dates.append(current_date)
 		high_temps.append(high_temp)
-print(high_temps)
+ # print(high_temps)
 
 # Plot the high temp
 plt.style.use('seaborn')
-fix, ax = plt.subplots()
-ax.plot(high_temps, c="red")
+fig, ax = plt.subplots()
+ax.plot(dates, high_temps, c="red")
 
 # Format graph
-ax.set_title("Sitka temperature")
-ax.set_xlabel("Time")
-ax.set_ylabel("High Temperature")
+ax.set_title("Sitka Daily High Temperatures", fontsize=18)
+ax.set_xlabel("Date", fontsize=14)
+fig.autofmt_xdate()
+ax.set_ylabel("Temperatures (F)", fontsize=14)
+ax.tick_params(axis='both', which='major', labelsize=12)
 plt.show()
 
