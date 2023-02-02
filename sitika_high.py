@@ -27,14 +27,16 @@ with open(filename) as f:
 # Plot the high temp
 plt.style.use('seaborn')
 fig, ax = plt.subplots()
-ax.plot(dates, high_temps, c="red")
-ax.plot(dates, low_temps, c="blue")
+ax.plot(dates, high_temps, c="red", alpha=0.5)
+ax.plot(dates, low_temps, c="blue", alpha=0.5)
 
 # Format graph
 ax.set_title("Daily High and Low Temperatures - 2018", fontsize=18)
 ax.set_xlabel("", fontsize=14)
 fig.autofmt_xdate()
 ax.set_ylabel("Temperatures (F)", fontsize=14)
+# Fill color between high and low.
+ax.fill_between(dates, high_temps, low_temps, facecolor='blue', alpha=0.1)
 ax.tick_params(axis='both', which='major', labelsize=12)
 plt.show()
 
