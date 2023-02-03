@@ -7,8 +7,8 @@ with open(filename) as f:
 	reader = csv.reader(f)
 	header = next(reader)
 	# Iterate the header
-	for index, column_header in enumerate(header):
-		print(index, column_header)
+	for index in header:
+		print(len(index))
 	# Explore Dates, High & Low temps.
 	dates, highs, lows = [], [], []
 	for row in reader:
@@ -34,6 +34,6 @@ ax.set_title("Daily High and Low Temperature - 2018", fontsize=16)
 ax.set_xlabel("")
 fig.autofmt_xdate()
 ax.set_ylabel("Temperature (F)", fontsize=14)
-ax.fill_between(dates, highs, lows, facecolor="aquamarine", alpha=0.1)
+ax.fill_between(dates, highs, lows, facecolor="aquamarine", alpha=0.7)
 ax.tick_params(axis="both", which="major", labelsize=12)
 plt.show()
