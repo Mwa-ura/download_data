@@ -8,3 +8,6 @@ with open(filename) as f:
 readable_data = 'data/readable_eq_data.json'
 with open(readable_data, 'w') as f:
 	json.dump(all_eq_data, f, indent=4)
+
+all_eq_dict = all_eq_data['features']
+print(len(all_eq_dict))
