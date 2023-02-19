@@ -14,14 +14,16 @@ with open(readable_data, 'w') as f:
 all_eq_dicts = all_eq_data['features']
 print(len(all_eq_dicts))
 # Extract magnitude data
-mags, logs, lats = [], [], []
+mags, logs, lats, hover_texts = [], [], [], []
 for eq_dict in all_eq_dicts:
 	mag = eq_dict['properties']['mag']
 	log = eq_dict['geometry']['coordinates'][0]
 	lat = eq_dict['geometry']['coordinates'][1]
+	hover_text = eq_dict['properties']['title']
 	mags.append(mag)
 	logs.append(log)
 	lats.append(lat)
+	hover_texts.append(hover_text)
 # print(mags[:10])
 # print(logs[:10])
 # print(lats[:10])
@@ -31,6 +33,7 @@ data = [{
 	'type':'scattergeo',
 	'lon':logs,
 	'lat':lats,
+	'text': hover_text,
 	'marker': {
 		'size': [5*mag for mag in mags],
 		'color': mags,
