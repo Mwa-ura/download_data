@@ -32,7 +32,12 @@ data = [{
 	'lon':logs,
 	'lat':lats,
 	'marker': {
-		'size': [5*mag for mag in mags]}
+		'size': [5*mag for mag in mags],
+		'color': mags,
+		'colorscale': 'Viridis',
+		'reversescale': True,
+		'colorbar': {'title':'Magnitude'}
+		}
 	}]
 my_layout = Layout(title="Global Earthquakes")
 fig = {'data':data, 'layout':my_layout}
