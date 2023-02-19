@@ -27,7 +27,13 @@ for eq_dict in all_eq_dicts:
 # print(lats[:10])
 
 # Map the earthquakes.
-data = [Scattergeo(lon=logs, lat=lats)]
+data = [{
+	'type':'scattergeo',
+	'lon':logs,
+	'lat':lats,
+	'marker': {
+		'size': [5*mag for mag in mags]}
+	}]
 my_layout = Layout(title="Global Earthquakes")
 fig = {'data':data, 'layout':my_layout}
 offline.plot(fig, filename='global_earthquake.html')
